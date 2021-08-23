@@ -1,48 +1,71 @@
 import {useState, useEffect} from 'react'
 import './css/App.css';
 import {getMoviesById} from './utils';
-import MovieCard from './components/MovieCard'
-import MovieDetails from './components/MovieDetails'
-import MovieList from './components/MovieList'
+import MovieCard from './components/MovieCard';
+import MovieDetails from './components/MovieDetails';
+import Spinner from "./components/spinner";
+import MovieList from './components/MovieList';
+import { getMoviesBySearchTerm } from "./utils";
 //import Modal from './Modal';
 
+
 function App() {
-  const [movie, setMovie] = useState({});
+  const [searchTerm, setSearchTerm] = useState("Treasure Island");
+  const [isLoading, setIsLoading] = useState(false);
+  const [movies, setMovies] = useState([]);
+  const [error, setError] = useState(null);
 
-  // Since fetch api is something that happens outside of 
-  //the function where it's invoked, it's considered
+  // Since fetch api is something that happens outside of the function where it's invoked, it's considered
   // a side effect, so we need to use inside a useEffect hook
+
   useEffect(() => {
-    getMoviesById("tt0100813")
-      .then((movie) => {
-        console.log(movie);
 
-        const rating = movie.Ratings?.[0]?.Value;
-        const decimalRating = rating.split('/')?.[0] || rating;
+    setIsLoading(true);
 
-        setMovie({ ...movie, Rating: decimalRating }); // update state for movie
+    getMoviesBySearchTerm(searchTerm)
+      .then((movies) => {
+        console.log(movies);
+
+        setMovies(movies);
+        setError(null);
       })
       .catch((err) => {
+
+        setError(err);
+        setMovies([]);
         console.error("Error:", err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, []); // empty array, means never execute the effect again, do it only once and that's it
+
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+
+  if (error) {
+    return (<div>Whoops! { error }</div>);
+  }
 
   return (
     <div className="App">
       <h1>Movie App</h1>
 
+      <MovieList movies={movies} />
 
       {/* Using the MovieCard component */}
-      <MovieCard
+      {/* <MovieCard
         title={movie.Title}
         type={movie.Type}
         posterUrl={movie.Poster}
-      />
+      /> */}
 
       <div className="h-100"></div>
 
       {/* Using the MovieDetails component */}
-      <MovieDetails
+      {/* <MovieDetails
         posterUrl={movie.Poster}
         title={movie.Title}
         rated={movie.Rated}
@@ -51,10 +74,9 @@ function App() {
         plot={movie.Plot}
         actors={movie.Actors}
         rating={movie.Rating}
-      />
+      /> */}
     </div>
   );
 }
-
 
 export default App;

@@ -1,25 +1,32 @@
-import React from 'react';
+import React from "react";
+import PropTypes from "prop-types";
 
-// const MovieList = (props) => {
-// 	return (
-// 		<>
-// 			{props.movies.map((movie, index) => (
-// 				<div className='image-container d-flex justify-content-start m-3'>
-// 					<img src={movie.Poster} alt='movie'></img>
-// 				</div>
-// 			))}
-// 		</>
-// 	);
-// };
+import MovieCard from "./MovieCard";
 
-const MovieList = ({movies}) => {
-	return (
-		<div>
-           {movies.map((movie) =>(
-			   <p>{movie.Title}</p>
-           ))}
-        </div>
-	);
+
+function MovieList({ movies }) {
+  return (
+    <div style={{display: "flex"}}>
+      {movies.map((movie) => (
+        <MovieCard
+          key={movie.imdbID}
+          title={movie.Title}
+          type={movie.Type}
+          posterUrl={movie.Poster}
+        />
+      ))}
+    </div>
+  );
+}
+
+MovieList.defaultProps = {
+  movies: [],
 };
+
+MovieList.propTypes = {
+  movies: PropTypes.arrayOf(PropTypes.object),
+};
+
+
 
 export default MovieList;
