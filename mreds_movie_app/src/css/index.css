@@ -1,0 +1,12 @@
+@import url("./fonts.css");
+
+body {
+  margin: 0;
+  font-family: "Trade Winds";
+  color:#c65c29;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #002a53;
+}
+
+
