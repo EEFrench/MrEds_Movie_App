@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import '../css/MovieDetails.css'
 //import Pill from './Pill'
 
 function MovieDetails({
