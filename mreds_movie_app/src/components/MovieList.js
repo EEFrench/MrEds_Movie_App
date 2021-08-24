@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-
+import '../css/MovieList.css'
 import MovieCard from "./MovieCard";
 
 

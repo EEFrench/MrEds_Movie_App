@@ -6,7 +6,7 @@ import MovieDetails from './components/MovieDetails';
 import Spinner from "./components/spinner";
 import MovieList from './components/MovieList';
 import { getMoviesBySearchTerm } from "./utils";
-//import Modal from './Modal';
+import Modal from './components/Modal';
 
 
 function App() {
@@ -38,7 +38,8 @@ function App() {
       .finally(() => {
         setIsLoading(false);
       });
-  }, []); // empty array, means never execute the effect again, do it only once and that's it
+  }, []); // empty array, means never execute the effect again, 
+  //do it only once and that's it
 
 
   if (isLoading) {
@@ -51,30 +52,10 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Movie App</h1>
-
+      <h1>MrEd's Movie App</h1>
       <MovieList movies={movies} />
-
-      {/* Using the MovieCard component */}
-      {/* <MovieCard
-        title={movie.Title}
-        type={movie.Type}
-        posterUrl={movie.Poster}
-      /> */}
-
       <div className="h-100"></div>
 
-      {/* Using the MovieDetails component */}
-      {/* <MovieDetails
-        posterUrl={movie.Poster}
-        title={movie.Title}
-        rated={movie.Rated}
-        runtime={movie.Runtime}
-        genre={movie.Genre}
-        plot={movie.Plot}
-        actors={movie.Actors}
-        rating={movie.Rating}
-      /> */}
     </div>
   );
 }
