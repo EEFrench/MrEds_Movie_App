@@ -14,33 +14,59 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [clickedMovieId, setClickedMovieId] = useState(null);
 
-  // Since fetch api is something that happens outside of the function where it's invoked, it's considered
-  // a side effect, so we need to use inside a useEffect hook
+  const handleMovieCardClick = (movieId) => {
+    setClickedMovieId(movieId)
+    setShowModal(true)
+  }
 
-  useEffect(() => {
+  // Since fetch api is something that happens outside of the function 
+  //where it's invoked, it's considered a side effect, 
+  //so we need to use inside a useEffect hook
 
+  useEffect(async () => {
     setIsLoading(true);
 
-    getMoviesBySearchTerm(searchTerm)
-      .then((movies) => {
-        console.log(movies);
+    try {
+      const movieData = await getMoviesBySearchTerm(searchTerm);
+      setMovies(movieData)
+      setError(null)
+    } catch(error) {
+      setMovies([]);
+      setError(error);
+    } finally {
+      setIsLoading(false);
+    }
+  },
+  []
+);
 
-        setMovies(movies);
-        setError(null);
-      })
-      .catch((err) => {
-
-        setError(err);
-        setMovies([]);
-        console.error("Error:", err);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, []); // empty array, means never execute the effect again, 
-  //do it only once and that's it
-
+// return (
+//   <>
+//   {isLoading
+//     ? (<div>Loading...</div>)
+//     : (
+//       <>
+//         <MovieList movies={movies} onMovieCardClicked={handleMovieCardClick} />
+//       </>
+//     )}
+//     <Modal show={showModal} onClose={() => setShowModal(false)}>
+//       <MovieDetails 
+//         posterUrl="https://m.media-amazon.com/images/I/81az0oR6izL._AC_.jpg"
+//         title="Batman v Superman: Dawn of Justice"
+//         rated="PG-13"
+//         runtime={183}
+//         genre="Action, Adventure, Sci-Fi" 
+//         plot="Fearing that the actions of Superman are left unchecked, Batman takes on the Man of Steel, while the world wrestles with what kind of a hero it really needs." 
+//         actors="Ben Affleck, Henry Cavill, Amy Adams, Jesse Eisenberg" 
+//         rating={6.3}
+//       />
+//     </Modal>
+//   </>
+// );
+// }
 
   if (isLoading) {
     return <Spinner />;

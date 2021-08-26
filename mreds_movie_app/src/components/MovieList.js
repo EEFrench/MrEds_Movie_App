@@ -4,15 +4,16 @@ import '../css/MovieList.css'
 import MovieCard from "./MovieCard";
 
 
-function MovieList({ movies }) {
+const MovieList = ({ movies = [], onMovieCardClicked }) => {
   return (
-    <div style={{display: "flex"}}>
+    <div style={{display: "flex", flexWrap: 'wrap'}}>
       {movies.map((movie) => (
         <MovieCard
           key={movie.imdbID}
           title={movie.Title}
           type={movie.Type}
           posterUrl={movie.Poster}
+          onClicked={() => onMovieCardClicked(movie.imdbID)}
         />
       ))}
     </div>
