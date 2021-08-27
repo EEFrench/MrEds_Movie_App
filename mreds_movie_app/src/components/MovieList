@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import MovieDetails from "./MovieDetails";
 import { Button } from "./Styles";
 import Modal from "react-modal";
+
+
+
+
 const MovieList = (props) => {
 	const [show, setShow] = useState(false);
 	const styles = {

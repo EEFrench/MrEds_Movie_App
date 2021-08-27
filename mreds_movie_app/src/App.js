@@ -43,30 +43,7 @@ function App() {
   []
 );
 
-// return (
-//   <>
-//   {isLoading
-//     ? (<div>Loading...</div>)
-//     : (
-//       <>
-//         <MovieList movies={movies} onMovieCardClicked={handleMovieCardClick} />
-//       </>
-//     )}
-//     <Modal show={showModal} onClose={() => setShowModal(false)}>
-//       <MovieDetails 
-//         posterUrl="https://m.media-amazon.com/images/I/81az0oR6izL._AC_.jpg"
-//         title="Batman v Superman: Dawn of Justice"
-//         rated="PG-13"
-//         runtime={183}
-//         genre="Action, Adventure, Sci-Fi" 
-//         plot="Fearing that the actions of Superman are left unchecked, Batman takes on the Man of Steel, while the world wrestles with what kind of a hero it really needs." 
-//         actors="Ben Affleck, Henry Cavill, Amy Adams, Jesse Eisenberg" 
-//         rating={6.3}
-//       />
-//     </Modal>
-//   </>
-// );
-// }
+
 
   if (isLoading) {
     return <Spinner />;
