@@ -1,0 +1,64 @@
+.movie-details-container {
+  display: flex;
+}
+
+.movie-details-section {
+  width: 50%;
+}
+
+.movie-details-section:nth-of-type(2) {
+  padding: 0 20px;
+}
+
+.movie-details-section > img {
+  height: 100%;
+}
+
+.movie-details-header {
+  display: flex;
+}
+
+.movie-details-title {
+  flex-grow: 1;
+  font-size: 2.5em;
+  font-weight: bold;
+}
+
+.movie-details-rating {
+  margin-left: 20px;
+  font-size: 2.5em;
+  font-weight: bold;
+  color: royalblue;
+}
+
+.movie-details-pills {
+  margin: 20px 0;
+}
+
+.movie-details-pills > span {
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.movie-details-pills > span:last-of-type {
+  margin-right: 0;
+  margin-bottom: 0;
+}
+
+.movie-details-subsection {
+  margin-bottom: 20px;
+}
+
+.movie-details-subsection:last-of-type {
+  margin-bottom: 0;
+}
+
+.movie-details-subsection > p {
+  font-size: 1.1em;
+}
+
+.movie-details-subsection > p:first-of-type {
+  margin-bottom: 5px;
+  font-size: 1.4em;
+  font-weight: bold;
+}

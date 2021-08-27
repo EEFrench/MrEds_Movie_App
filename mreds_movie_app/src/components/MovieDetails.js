@@ -1,73 +1,45 @@
-import React from "react";
-import PropTypes from 'prop-types';
-import '../css/MovieDetails.css'
+import PropTypes from "prop-types";
+import Pill from "./Pill";
+import "../styles/MovieDetails.css";
 
-function MovieDetails({
-  posterUrl,
-  title,
-  rated,
-  runtime,
-  genre,
-  plot,
-  actors,
-  rating,
-}) {
+const MovieDetails = (props) => {
   return (
-    <article className="MovieDetails" style={{ display: "flex" }}>
-      <div>
-        <img src={posterUrl} alt={title} />
+    <div className="movie-details-container">
+      <div className="movie-details-section">
+        <img src={props.posterUrl} alt={props.title} />
       </div>
-      <div className="MovieDetails__details">
-        <header  style={{ display: "flex" }}>
-            <h3 className="MovieDetails__title flex-1">{title}</h3>
-            <div className="MovieDetails__rating flex-1">{rating}</div>
-        </header>
-
-        <ul className="MovieDetails__tags">
-          <li>{rated}</li>
-          <li>{runtime}</li>
-          <li>{genre}</li>
-        </ul>
-
-        <div>
-          <h4 className="MovieDetails__subtitle">Plot</h4>
-          <p className="MovieDetails__description">{plot}</p>
-
-          <h4 className="MovieDetails__subtitle">Actors</h4>
-          <p className="MovieDetails__description">{actors}</p>
+      <div className="movie-details-section">
+        <div className="movie-details-header">
+          <p className="movie-details-title">{props.title}</p>
+          <p className="movie-details-rating">{props.rating}</p>
+        </div>
+        <div className="movie-details-pills">
+          <Pill backgroundColor="white">{props.rated}</Pill>
+          <Pill backgroundColor="white">{props.runtime} min</Pill>
+          <Pill backgroundColor="white">{props.genre}</Pill>
+        </div>
+        <div className="movie-details-subsection">
+          <p>Plot</p>
+          <p>{props.plot}</p>
+        </div>
+        <div className="movie-details-subsection">
+          <p>Actors</p>
+          <p>{props.actors}</p>
         </div>
       </div>
-    </article>
+    </div>
   );
-}
-
-/* BONUS */
-// The defaults in case no corresponding prop values are passed
-MovieDetails.defaultProps = {
-  posterUrl: "",
-  title: "",
-  rated: "",
-  runtime: "",
-  genre: "",
-  plot: "",
-  actors: "",
-  rating: "",
 };
 
-/* BONUS */
-// Type safety check to ensure each prop is pass a valid type. 
-//For example if it's suppose to be a string, this will
-// warn you in console if it's not
 MovieDetails.propTypes = {
-    posterUrl: PropTypes.string,
-    title: PropTypes.string,
-    rated: PropTypes.string,
-    runtime: PropTypes.string,
-    genre: PropTypes.string,
-    plot: PropTypes.string,
-    actors: PropTypes.string,
-    rating: PropTypes.string,
-}
-
+  posterUrl: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  rated: PropTypes.string.isRequired,
+  runtime: PropTypes.number.isRequired,
+  genre: PropTypes.string.isRequired,
+  plot: PropTypes.string.isRequired,
+  actors: PropTypes.string.isRequired,
+  rating: PropTypes.number.isRequired,
+};
 
 export default MovieDetails;

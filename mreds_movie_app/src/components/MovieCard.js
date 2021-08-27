@@ -1,17 +1,24 @@
-import React from "react";
-import '../css/MovieCard.css'
+import Pill from "./Pill";
+import "../styles/MovieCard.css";
 
-function MovieCard({ title, type, posterUrl }) {
+const MovieCard = ({ posterUrl, title, type, onClicked }) => {
   return (
-      <article className="MovieCard">
-          <img src={posterUrl} alt={`${title} Poster`} width="150" />
-
-          <footer className="MovieCard__footer">
-              <h3 className="MovieCard__title">{ title }</h3>
-              <div className="MovieCard__tag">{ type }</div>
-          </footer>
-      </article>
-  )
-}
+    <div className="movie-card" onClick={onClicked}>
+      <img src={posterUrl} alt={title} />
+      <div className="movie-card-info">
+        <p>{title}</p>
+        <div>
+          <Pill
+            backgroundColor="rgba(255, 0, 0, 0.4)"
+            borderColor="rgba(255, 0, 0, 0.7)"
+          >
+            {type}
+          </Pill>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default MovieCard;
+© 2021 GitHub, Inc.

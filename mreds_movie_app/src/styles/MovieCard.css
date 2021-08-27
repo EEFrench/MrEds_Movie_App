@@ -1,0 +1,25 @@
+
+.movie-card {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  width: 250px;
+  border: 1px solid lightgrey;
+}
+
+.movie-card img {
+  width: 100%;
+}
+
+.movie-card-info {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.movie-card-info p {
+  margin-bottom: 10px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
